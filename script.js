@@ -3,8 +3,9 @@ const totalCopied = document.getElementById('total-copied');
 
 for (const button of copyButtons) {
     button.addEventListener("click", function (e) {
-        totalCopied.innerText = parseInt(totalCopied.innerText) + 1;
         const contactNumber = button.closest('.service-card').querySelector('.contact-number').innerText;
+        alert("Copied " + contactNumber);
+        totalCopied.innerText = parseInt(totalCopied.innerText) + 1;
         navigator.clipboard.writeText(contactNumber);
     });
 }
@@ -25,14 +26,15 @@ const totalCall = document.getElementById('available-coin');
 for (const button of callButtons) {
     button.addEventListener("click", function () {
         if (parseInt(totalCall.innerText) < 20) {
-            alert("Not enough coins");
+            alert("❌ You don't have enough coins. You need at least 20 coins to make a call.");
             return;
         }
-        alert("Will decrease 20 coins");
-        totalCall.innerText = parseInt(totalCall.innerText) - 20;
-
         const serviceName = button.closest('.service-card').querySelector('.service-title').innerText;
         const serviceNumber = button.closest('.service-card').querySelector('.contact-number').innerText;
+
+        alert("📞 Calling " + serviceName + " : " + serviceNumber);
+        totalCall.innerText = parseInt(totalCall.innerText) - 20;
+
         document.getElementById('call-history-list').innerHTML += `<div class="bg-gray-100 overflow-y-auto rounded-lg p-3 space-y-3 flex justify-between items-center my-2">
         <div>
         <h2 class="font-semibold text-gray-800">${serviceName}</h2>
