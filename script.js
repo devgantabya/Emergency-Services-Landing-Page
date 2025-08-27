@@ -1,36 +1,49 @@
 const copyButtons = document.getElementsByClassName('copy-button');
 const totalCopied = document.getElementById('total-copied');
 
-Array.from(copyButtons).forEach(button => {
-    button.addEventListener("click", function(e) {
+for (const button of copyButtons) {
+    button.addEventListener("click", function (e) {
         totalCopied.innerText = parseInt(totalCopied.innerText) + 1;
         const contactNumber = button.closest('.service-card').querySelector('.contact-number').innerText;
         navigator.clipboard.writeText(contactNumber);
     });
-});
+}
 
 
 const heartIcons = document.getElementsByClassName('heart-icon');
 const totalHearts = document.getElementById('total-heart');
 
-Array.from(heartIcons).forEach(icon => {
-    icon.addEventListener("click", function(e) {
+for (const icon of heartIcons) {
+    icon.addEventListener("click", function (e) {
         totalHearts.innerText = parseInt(totalHearts.innerText) + 1;
     });
-});
+}
 
 const callButtons = document.getElementsByClassName('call-button');
 const totalCall = document.getElementById('available-coin');
 
-Array.from(callButtons).forEach(button => {
-    button.addEventListener("click", function(e) {
-        if(parseInt(totalCall.innerText) < 20) {
+for (const button of callButtons) {
+    button.addEventListener("click", function () {
+        if (parseInt(totalCall.innerText) < 20) {
             alert("Not enough coins");
             return;
         }
+        alert("Will decrease 20 coins");
         totalCall.innerText = parseInt(totalCall.innerText) - 20;
+
+        const serviceName = button.closest('.service-card').querySelector('.service-title').innerText;
+        const serviceNumber = button.closest('.service-card').querySelector('.contact-number').innerText;
+        document.getElementById('call-history-list').innerHTML += `<div class="bg-gray-100 overflow-y-auto rounded-lg p-3 space-y-3 flex justify-between items-center my-2">
+        <div>
+        <h2 class="font-semibold text-gray-800">${serviceName}</h2>
+        <p>${serviceNumber}</p>
+        </div>
+        <p>${new Date().toLocaleTimeString()}</p>
+        </div>`;
     });
+}
+
+document.getElementById('clear-call-history').addEventListener("click", function () {
+    document.getElementById('call-history-list').innerHTML = '';
+    document.getElementById('call-history-list').style = '0';
 });
-
-
-
