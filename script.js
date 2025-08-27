@@ -37,10 +37,10 @@ for (const button of callButtons) {
 
         document.getElementById('call-history-list').innerHTML += `<div class="bg-gray-100 overflow-y-auto rounded-lg p-3 space-y-3 flex justify-between items-center my-2">
         <div>
-        <h2 class="font-semibold text-gray-800">${serviceName}</h2>
-        <p>${serviceNumber}</p>
+        <h2 class="font-semibold text-gray-800 inter-semibold">${serviceName}</h2>
+        <p class="hind-madurai-regular">${serviceNumber}</p>
         </div>
-        <p>${new Date().toLocaleTimeString()}</p>
+        <p class="hind-madurai-regular">${new Date().toLocaleTimeString()}</p>
         </div>`;
     });
 }
